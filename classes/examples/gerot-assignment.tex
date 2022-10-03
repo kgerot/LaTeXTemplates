@@ -1,6 +1,6 @@
 \documentclass{gerot-assignment}
 
-\course{Course Name\\and/or Number}
+\course{Course Number}{Course Name}
 \title{Assignment Name}
 \author{Author Name}
 \date{Date} % use \today for today's date
@@ -103,7 +103,8 @@ This environment could be useful for continuing questions with interspersed answ
         &\verb|\CE| & $\CE$ & conditional expectation ($Y|X$)\\
         \verb|\Z| & $\Z$ & integers
         &\verb|\E| & $\E$ & expectation ($X$)\\
-        \verb|\C| & $\C$ & complex numbers\\
+        \verb|\C| & $\C$ & complex numbers
+        &\verb|\ng| & $\ng$ & shortened negative sign\\
         \verb|\N| & $\N$ & natural numbers\\
         % \bottomrule
     \end{tabular}
@@ -113,9 +114,10 @@ This environment could be useful for continuing questions with interspersed answ
     For R code, there are the following environments/commands:
     
     \begin{tabular}{p{0.45\textwidth}p{0.5\textwidth}}
-        \verb|\r{<code>}| & Produces inline R code like \r{library(alr4)}\\[3pt]
+        \verb|\r{<code>}| & Produces inline R code like \r{library(alr4)}\\[6pt]
+        \verb|\begin{rcode}\end{rcode}| & Produces indented and formatted R code\\[6pt]
         \verb|\InOutR[aside]{<fname>}| &
-        Produces a box with the input and output code where the input can be found at \texttt{code > fname.R} and the output can be found at \texttt{out > fname.txt}. The aside option determines if the code is displayed side by side with the output or if it is stacked. See \url{https://github.com/kgerot/LaTeXTemplates/blob/main/classes/examples/R.tex} for more\\
+        Produces a box with the input and output code where the input can be found at \texttt{code > fname.R} and the output can be found at \texttt{out > fname.txt}. The aside option determines if the code is displayed side by side with the output or if it is stacked. See \texttt{R.tex} for more. \\[59pt]
         \verb|\InOutRImg[aside]{<fname>}{<width>}| & The same as \verb|\InOutR[*aside]{<fname>}|, except the output should be in \texttt{img > fname.png} and the width is represented as a percent of the available space dedicated to the image
     \end{tabular}
 \end{answer}
