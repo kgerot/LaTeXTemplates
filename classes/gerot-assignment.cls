@@ -15,7 +15,9 @@
 \usepackage[algoruled]{algorithm2e}
 \usepackage[margin=1cm]{geometry} % safe bet that printers can print this small of a margin
 \usetikzlibrary{matrix,fit,backgrounds,trees,shapes}
-
+% define colors for R input/output
+\definecolor{back}{gray}{0.95}
+\definecolor{frame}{gray}{0.90}
 % sets the Tilde Operator ∼ [\u223C] (different from a Tilde ~ [\u007e]) to the shape of $\sim$
 % which allows for use in code
 \DeclareUnicodeCharacter{223C}{$\sim$}
