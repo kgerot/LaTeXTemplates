@@ -1,0 +1,123 @@
+\documentclass{gerot-assignment}
+
+\course{Course Name\\and/or Number}
+\title{Assignment Name}
+\author{Author Name}
+\date{Date} % use \today for today's date
+
+\begin{document}
+
+\maketitle
+
+\begin{question}
+    Use the \verb|question| environment to to write out each question on your assignment
+\end{question}
+\begin{answer}
+    And then write your answers in the \verb|answer| environment
+\end{answer}
+
+\begin{question}
+    Numbering works just like the enumerate environment
+\end{question}
+\begin{subquestion}
+    There are subquestions (level 2 indent)
+\end{subquestion}
+\begin{subsubquestion}
+    and also subsubquestions (level 3 indent)
+\end{subsubquestion}
+\begin{subquestion}
+    You can use the \verb|answer| environment for all questions if you would like
+\end{subquestion}
+\begin{answer}
+    This is the \verb|answer| environment again
+\end{answer}
+
+\begin{subquestion}
+    Or you can use the \verb|subanswer| environment
+\end{subquestion}
+\begin{subanswer}
+    This is the \verb|subanswer| environment
+\end{subanswer}
+
+\begin{subsubquestion}
+    Or the \verb|subsubanswer| environment
+\end{subsubquestion}
+\begin{subsubanswer}
+    This is the \verb|subsubanswer| environment
+\end{subsubanswer}
+
+\begin{question}[]
+Here is an unnumbered question. You can create this by typing
+\begin{verbatim}
+    \begin{question}[]
+    
+    \end{question}
+\end{verbatim}
+This environment could be useful for continuing questions with interspersed answers
+\end{question}
+
+\begin{question}
+    Normal question numbering resumes after a blank or custom question number
+\end{question}
+
+\setcounter{eni}{0}
+\begin{question}
+    To restart numbering for level 1 questions, use \verb|\setcounter{eni}{0}| right before you declare the environment
+\end{question}
+
+\begin{subquestion}
+    \verb|subquestion|s and \verb|subsubquestion|s automatically restart numbering after a \verb|question|. 
+\end{subquestion}
+
+\setcounter{enii}{0}
+\begin{subquestion}
+    To restart numbering for level 2 questions, use \verb|\setcounter{enii}{0}|
+\end{subquestion}
+\begin{subsubquestion}
+\end{subsubquestion}
+\setcounter{eniii}{0}
+\begin{subsubquestion}
+    To restart numbering for level 3 questions, use \verb|\setcounter{eniii}{0}|
+\end{subsubquestion}
+
+\begin{answer}
+    The answer environment can span multiple pages and it can hold any type of text, figures, or math.
+    
+    \vspace*{2em}
+    
+    There are some custom symbols that I find useful:
+    
+    \begin{tabular}{lcr|lcr}
+        % \toprule
+        % \textbf{Command} & \textbf{Symbol} & \textbf{Description}
+        % &\textbf{Command} & \textbf{Symbol} & \textbf{Description}\\[3pt]
+        \verb|\ps{}| & $\displaystyle\ps{\frac{a}{b}}$ $\ps{x_0}$ & dynamic parentheses
+        &\verb|\bhat| & $\bhat$ & estimated beta\\[6pt]
+        \verb|\bracks{}| & $\displaystyle\bracks{\frac{a}{b}}$ $\bracks{x_0}$ & dynamic brackets
+        &\verb|\xhat| & $\xhat$ & estimated x\\[6pt]
+        \verb|\braces{}| & $\displaystyle\braces{\frac{a}{b}}$ $\braces{x_0}$ & dynamic braces
+        &\verb|\yhat| & $\yhat$ & estimated y\\[6pt]
+        \verb|\abs{}| & $\displaystyle\abs{\frac{a}{b}}$ $\abs{x_0}$ & dynamic absolute value
+        &\verb|\F| & $\F$ & generic field\\
+        \verb|\R| & $\R$ & real numbers
+        &\verb|\CE| & $\CE$ & conditional expectation ($Y|X$)\\
+        \verb|\Z| & $\Z$ & integers
+        &\verb|\E| & $\E$ & expectation ($X$)\\
+        \verb|\C| & $\C$ & complex numbers\\
+        \verb|\N| & $\N$ & natural numbers\\
+        % \bottomrule
+    \end{tabular}
+    
+    \vspace*{2em}
+    
+    For R code, there are the following environments/commands:
+    
+    \begin{tabular}{p{0.45\textwidth}p{0.5\textwidth}}
+        \verb|\r{<code>}| & Produces inline R code like \r{library(alr4)}\\[3pt]
+        \verb|\InOutR[aside]{<fname>}| &
+        Produces a box with the input and output code where the input can be found at \texttt{code > fname.R} and the output can be found at \texttt{out > fname.txt}. The aside option determines if the code is displayed side by side with the output or if it is stacked. See \url{https://github.com/kgerot/LaTeXTemplates/blob/main/classes/examples/R.tex} for more\\
+        \verb|\InOutRImg[aside]{<fname>}{<width>}| & The same as \verb|\InOutR[*aside]{<fname>}|, except the output should be in \texttt{img > fname.png} and the width is represented as a percent of the available space dedicated to the image
+    \end{tabular}
+\end{answer}
+
+\end{document}
