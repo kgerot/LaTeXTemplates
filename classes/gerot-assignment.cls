@@ -1,39 +1,30 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{gerot-assignment}
     [Basic Assignment Template]
-    
-\LoadClass[11pt]{exam}
+\LoadClass[11pt]{exam} % uses exam class as the base and 11pt font
 
-\printanswers
+% load packages and libraries
+\usepackage[x11names]{xcolor}
 \usepackage[utf8]{inputenc}
-
-\usepackage{pmboxdraw,epsfig,makecell,mathtools,xcolor,hyperref,fullpage,tikz,fourier,wrapfig,etoolbox,enumitem,graphicx,multicol,listings,float,amssymb,amsthm, amsmath,booktabs,fancybox,xparse,minted,changepage,xstring,fancyvrb}
+\usepackage{
+    pmboxdraw,epsfig,makecell,mathtools,hyperref,fullpage,tikz,fourier,
+    wrapfig,etoolbox,enumitem,graphicx,multicol,listings,float,amssymb,amsthm, 
+    amsmath,booktabs,fancybox,xparse,minted,changepage,xstring,fancyvrb
+}
 \usepackage[many]{tcolorbox}
 \usepackage[algoruled]{algorithm2e}
-\usepackage[margin=40px]{geometry}
-\DeclareUnicodeCharacter{223C}{$\sim$}
-
-\definecolor{darkred}{rgb}{0.5,0,0}
-\definecolor{darkgreen}{rgb}{0,0.5,0}
+\usepackage[margin=1cm]{geometry} % safe bet that printers can print this small of a margin
 \usetikzlibrary{matrix,fit,backgrounds,trees,shapes}
 
-\pagestyle{empty}
+% sets the Tilde Operator ∼ [\u223C] (different from a Tilde ~ [\u007e]) to the shape of $\sim$
+% which allows for use in code
+\DeclareUnicodeCharacter{223C}{$\sim$}
+% colors which may be commonly used
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\pagestyle{empty} % remove page numbering
+% sets numbering rules
 \AtBeginEnvironment{align}{\setcounter{equation}{0}}
-
-\newenvironment{hangingindent}{
-    \begin{minipage}[t]{\linewidth}
-    \hangindent=2em
-    \hangafter=1
-    \raggedright%
-}{
-    \end{minipage}
-}
-
-\renewcommand{\author}[1]{\gdef\ga@author{#1}}
-\renewcommand{\title}[1]{\gdef\ga@title{#1}}
-\newcommand{\course}[1]{\gdef\ga@course{#1}}
-\renewcommand{\date}[1]{\gdef\ga@date{#1}}
-
 \renewcommand{\thesection}{}
 \renewcommand{\thesubsection}{}
 \newcounter{eni}
@@ -42,229 +33,121 @@
 \setcounter{enii}{0}
 \newcounter{eniii}
 \setcounter{eniii}{0}
-
-
-\newcommand{\bb}[1]{\mathbb{#1}}
-\newcommand{\parens}[1]{\left(#1\right)}
-\newcommand{\bracks}[1]{\left[#1\right]}
-\newcommand{\braces}[1]{\left\{#1\right\}}
-\newcommand{\abs}[1]{\left|#1\right|}
+% setting indents and depth of the table of contents
+\setlength{\parindent}{0pt} %
+\setlength{\parskip}{.25cm}
+\setcounter{tocdepth}{5}
+% set caligraphic math variables to their basic form
+% otherwise they look way too fancy
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+% parameters for title
+\renewcommand{\author}[1]{\gdef\ga@author{#1}}
+\renewcommand{\title}[1]{\gdef\ga@title{#1}}
+\newcommand{\course}[2]{\gdef\ga@cnum{#1}\gdef\ga@cname{#2}}
+\renewcommand{\date}[1]{\gdef\ga@date{#1}}
+% creates the header
 \renewcommand{\maketitle}{
-\begin{minipage}{0.33\textwidth}
-    \large \ga@course
-\end{minipage}
-\begin{minipage}{0.33\textwidth}
-    \centering
-    \Large \ga@title
-\end{minipage}
-\begin{minipage}{0.325\textwidth}
-    \hspace*{0pt}\hfill{\large \ga@date}
-\end{minipage}
-\vspace{-1.2em}
-\begin{center}
-    \ga@author
-\end{center}
-\vspace*{0.5em}
-\hrule
+\begin{minipage}[t]{.34\textwidth}\ga@cnum\par\ga@cname\end{minipage}
+\begin{minipage}[t]{.3\textwidth}\centering{\Large\ga@title}\par\ga@author\end{minipage}
+\begin{minipage}[t]{.34\textwidth}\hspace*{0pt}\hfill{\ga@date}\end{minipage}
+\par\vspace{1em}\hrule
 }
 
-\newcommand{\ps}[1]{\left(#1\right)}
-\renewcommand{\bracks}[1]{\left[#1\right]}
-\renewcommand{\braces}[1]{\left\{#1\right\}}
-\renewcommand{\abs}[1]{\left|#1\right|}
-
-% Math Symbols
+% dynamic enclosing marks
+\newcommand{\ps}[1]{\left(#1\right)} % parentheses
+\newcommand{\bracks}[1]{\left[#1\right]} % square brackets
+\newcommand{\braces}[1]{\left\{#1\right\}} % curly braces
+\newcommand{\abs}[1]{\left|#1\right|} % absolute values
+% Convenient Math Symbols
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\F}{\mathcal{F}}
-\renewcommand{\b}{\beta}
 \newcommand{\bhat}{\hat{\beta}}
 \newcommand{\xhat}{\hat{x}}
 \newcommand{\yhat}{\hat{y}}
 \newcommand{\CE}{E\ps{Y|X=x}}
 \newcommand{\E}{E\ps{X=x}}
+\renewcommand{\ng}{\scalebox{0.5}[1.0]{$-$}}
 
+% adds hanging indent to text -- especially useful in tabular environment
+\newcommand{\hang}[1]
+    {\begin{minipage}[t]{\linewidth}\hangindent=2em\hangafter=1\raggedright%
+    #1\end{minipage}}
 
-\setlength{\parindent}{0pt} %
-\setlength{\parskip}{.25cm}
-\setcounter{tocdepth}{5}
+% answer environments
+\newenvironment{answer}
+    {\par\vspace*{-5pt}\par\begin{tcolorbox}
+    [enhanced,breakable,center,sharp corners,
+    borderline west={0.5pt}{0pt}{Snow3},
+    colback=white,collower=gray,colframe=white,coltitle=black,
+    boxed title style={sharp corners,colback=white},
+    fontlower={\footnotesize},halign lower=flush right,valign lower=bottom,
+    overlay first={\draw[line width=.5pt,Snow3](frame.north west)--++(0:3mm);},
+    overlay last={\draw[line width=.5pt,Snow3](frame.south west)--++(0:3mm);},
+    overlay unbroken=
+        {\draw[line width=.5pt,Snow3](frame.north west)--++(0:3mm);
+        \draw[line width=.5pt,Snow3](frame.south west)--++(0:3mm);}]}
+    {\end{tcolorbox}}
+\newenvironment{subanswer}
+    {\begin{adjustwidth}{15pt}{0pt}\begin{answer}}
+    {\end{answer}\end{adjustwidth}}
+\newenvironment{subsubanswer}
+    {\begin{adjustwidth}{30pt}{0pt}\begin{answer}}
+    {\end{answer}\end{adjustwidth}}
 
-\newenvironment{answer}{
+% question environments
+\newenvironment{question}
+    {\begin{enumerate}[label=\arabic*.]\setcounter{enumi}{\value{eni}}\item}
+    {\setcounter{eni}{\value{enumi}}\setcounter{enii}{0}\setcounter{eniii}{0}
+    \end{enumerate}}
+\newenvironment{subquestion}
+    {\begin{adjustwidth}{30pt}{0pt}
+    \begin{enumerate}[label=(\alph*)]\setcounter{enumi}{\value{enii}}\item}
+    {\setcounter{enii}{\value{enumi}}
+    \setcounter{eniii}{0}\end{enumerate}\end{adjustwidth}}
+\newenvironment{subsubquestion}
+    {\begin{adjustwidth}{50pt}{0pt}
+    \begin{enumerate}[label=(\roman*)]\setcounter{enumi}{\value{eniii}}\item}
+    {\setcounter{eniii}{\value{enumi}}\end{enumerate}\end{adjustwidth}}
 
-\vspace*{-5pt}
-
-\begin{tcolorbox}[
-    enhanced,breakable,center,sharp corners,
-    borderline west={0.5pt}{0pt}{gray!50},
-    colback=white,collower=black!90,
-    colframe=white,coltitle=black,
-    boxed title style={
-        sharp corners,
-        colback=white,
-        colframe=gray
-    },
-    fontlower={\footnotesize},
-    halign lower=flush right,
-    valign lower=bottom,
-    overlay first = {
-        \draw[line width=0.5pt, gray!50] (frame.north west) -- ++(0:3mm);
-    },
-    overlay last = {
-        \draw[line width=0.5pt, gray!50] (frame.south west) -- ++(0:3mm);
-    },
-    overlay unbroken = {
-        \draw[line width=0.5pt, gray!50] (frame.north west) -- ++(0:3mm);
-        \draw[line width=0.5pt, gray!50] (frame.south west) -- ++(0:3mm);
-    }
-]
-}{
-    \end{tcolorbox}
-}
-
-\newenvironment{question}{
-    \begin{enumerate}[label=\arabic*.]
-        \setcounter{enumi}{\value{eni}}
-        \item}{
-        \setcounter{eni}{\value{enumi}}
-        \setcounter{enii}{0}
-        \setcounter{eniii}{0}
-    \end{enumerate}
-}
-\newenvironment{subquestion}{
-    \begin{adjustwidth}{30pt}{0pt}
-    \begin{enumerate}[label=(\alph*)]
-        \setcounter{enumi}{\value{enii}}
-        \item}{
-        \setcounter{enii}{\value{enumi}}
-        \setcounter{eniii}{0}
-    \end{enumerate}
-    \end{adjustwidth}
-}
-\newenvironment{subsubquestion}{
-    \begin{adjustwidth}{50pt}{0pt}
-     \begin{enumerate}[label=(\roman*)]
-        \setcounter{enumi}{\value{eniii}}
-        \item}{
-        \setcounter{eniii}{\value{enumi}}
-    \end{enumerate}
-    \end{adjustwidth}
-}
+% display R code
 \newenvironment{rcode}{
     \VerbatimEnvironment\begin{minted}[fontsize=\small]{R}%
-}{
-    \end{minted}
-}
+    }{\end{minted}}
+% inline R code
 \renewcommand{\r}[1]{\mintinline{R}{#1}}
 
-
-\newcommand{\InOutRImg}[3][]{%
-    \IfStrEq{#1}{aside}
+% R input & output boxes
+\newcommand{\InOutRImg}[3][]
+    {\IfStrEq{#1}{aside}
     {\begin{tcolorbox}
         [enhanced,breakable,bicolor,sharp corners,sidebyside,
-        colframe=gray!10,colback=gray!5,colbacklower=white,
-        left=7mm,sidebyside align=top seam,
-        righthand width=.3\linewidth]\-\vspace{-1em}
+        colframe=frame,colback=back,colbacklower=white,
+        left=7mm,sidebyside align=top seam,righthand width=.3\linewidth]\par
     \inputminted[fontsize=\small,linenos]{R}{code/#2.R}
     \tcblower\includegraphics[width=#3\linewidth]{imgs/#2.png}
     \end{tcolorbox}}
     {\begin{tcolorbox}
         [enhanced,breakable,bicolor,sharp corners,
-        colframe=gray!10,colback=gray!5,colbacklower=white,
-        halign lower=center,left=7mm]\-\vspace{-1.5em}
+        colframe=frame,colback=back,colbacklower=white,
+        halign lower=center,left=7mm,after=\vspace{1em}]\par
     \inputminted[fontsize=\small,linenos]{R}{code/#2.R}%
-    \tcblower\-\vspace{-1em}\includegraphics[width=#3\linewidth]{imgs/#2.png}%
-    \vspace{1em}
-    \end{tcolorbox}}
-}
-\newcommand{\InOutR}[2][]{%
-    \IfStrEq{#1}{aside}
+    \tcblower\par\includegraphics[width=#3\linewidth]{imgs/#2.png}%
+    \end{tcolorbox}}}
+\newcommand{\InOutR}[2][]
+    {\IfStrEq{#1}{aside}
     {\begin{tcolorbox}
         [enhanced,breakable,bicolor,sharp corners,sidebyside,
-        colframe=gray!10,colback=gray!5,colbacklower=white,
-        left=7mm,sidebyside align=top,
-        righthand width=.3\linewidth]
+        colframe=frame,colback=back,colbacklower=white,
+        left=7mm,sidebyside align=top,righthand width=.3\linewidth]\par
     \inputminted[fontsize=\small,linenos]{R}{code/#2.R}
     \tcblower\lstinputlisting[basicstyle=\small\tt]{out/#2.txt}
     \end{tcolorbox}}
     {\begin{tcolorbox}
-        [enhanced,breakable,bicolor,sharp corners,
-        colframe=gray!10,colback=gray!5,colbacklower=white,
-        halign lower=center,left=7mm]\-\vspace{-1.5em}
+        [enhanced,breakable,bicolor,sharp corners,colframe=frame,
+        colback=back,colbacklower=white,halign lower=center,left=7mm]\par
     \inputminted[fontsize=\small,linenos]{R}{code/#2.R}
     \tcblower\lstinputlisting[basicstyle=\small\tt]{out/#2.txt}
-    \end{tcolorbox}}
-}
-
-\renewcommand{\ng}{\scalebox{0.5}[1.0]{$-$}}
-
-
-\thispagestyle{empty}
-
-\newenvironment{subanswer}{
-
-\vspace*{-5pt}
-
-\begin{adjustwidth}{15pt}{0pt}
-\begin{tcolorbox}[
-    enhanced,breakable,center,sharp corners,
-    borderline west={0.5pt}{0pt}{gray!50},
-    colback=white,collower=black!90,
-    colframe=white,coltitle=black,
-    boxed title style={
-        sharp corners,
-        colback=white,
-        colframe=gray
-    },
-    fontlower={\footnotesize},
-    halign lower=flush right,
-    valign lower=bottom,
-    overlay first = {
-        \draw[line width=0.5pt, gray!50] (frame.north west) -- ++(0:3mm);
-    },
-    overlay last = {
-        \draw[line width=0.5pt, gray!50] (frame.south west) -- ++(0:3mm);
-    },
-    overlay unbroken = {
-        \draw[line width=0.5pt, gray!50] (frame.north west) -- ++(0:3mm);
-        \draw[line width=0.5pt, gray!50] (frame.south west) -- ++(0:3mm);
-    }
-]
-}{
-    \end{tcolorbox}
-    \end{adjustwidth}
-}
-\newenvironment{subsubanswer}{
-
-\vspace*{-5pt}
-
-\begin{adjustwidth}{30pt}{0pt}
-\begin{tcolorbox}[
-    enhanced,breakable,center,sharp corners,
-    borderline west={0.5pt}{0pt}{gray!50},
-    colback=white,collower=black!90,
-    colframe=white,coltitle=black,
-    boxed title style={
-        sharp corners,
-        colback=white,
-        colframe=gray
-    },
-    fontlower={\footnotesize},
-    halign lower=flush right,
-    valign lower=bottom,
-    overlay first = {
-        \draw[line width=0.5pt, gray!50] (frame.north west) -- ++(0:3mm);
-    },
-    overlay last = {
-        \draw[line width=0.5pt, gray!50] (frame.south west) -- ++(0:3mm);
-    },
-    overlay unbroken = {
-        \draw[line width=0.5pt, gray!50] (frame.north west) -- ++(0:3mm);
-        \draw[line width=0.5pt, gray!50] (frame.south west) -- ++(0:3mm);
-    }
-]
-}{
-    \end{tcolorbox}
-    \end{adjustwidth}
-}
+    \end{tcolorbox}}}
