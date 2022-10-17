@@ -113,12 +113,15 @@
     {\begin{adjustwidth}{50pt}{0pt}
     \begin{enumerate}[label=(\roman*)]\setcounter{enumi}{\value{eniii}}\item}
     {\setcounter{eniii}{\value{enumi}}\end{enumerate}\end{adjustwidth}}
+\newcommand{\qtitle}[1]{\textbf{#1\hspace*{1em}}}
 
 % display R code
 \newenvironment{rcode}{
-    \VerbatimEnvironment\begin{minted}[fontsize=\small]{R}%
-    }{\end{minted}}
-% inline R code
+    \VerbatimEnvironment\begin{minted}[fontsize=\small,frame=leftline,framerule=2pt,rulecolor=lightgray!80,stripall,framesep=1em]{R}%
+}{\end{minted}}
+\lstnewenvironment{rout}{
+	\lstset{language={}, basicstyle=\small\ttfamily, numbers=none, showstringspaces=false,literate={~}{$\sim$}1}
+}{}
 \renewcommand{\r}[1]{\mintinline{R}{#1}}
 
 % R input & output boxes
