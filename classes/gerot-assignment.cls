@@ -7,7 +7,7 @@
 \usepackage[x11names]{xcolor}
 \usepackage[utf8]{inputenc}
 \usepackage{
-    pmboxdraw,epsfig,makecell,mathtools,hyperref,fullpage,tikz,fourier,
+    mathtools,hyperref,fullpage,tikz,fourier,
     wrapfig,etoolbox,enumitem,graphicx,multicol,listings,float,amssymb,amsthm, 
     amsmath,booktabs,fancybox,xparse,minted,changepage,xstring,fancyvrb
 }
