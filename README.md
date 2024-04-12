@@ -1,17 +1,11 @@
 # LaTeX Templates
 
-LaTeX templates for a variety of uses, with source control. These are mostly designed to make everyday LaTeX use easier. 
+LaTeX templates for a variety of uses, with source control. These are mostly designed to make my everyday LaTeX use easier. 
 
-Included Template Types:
-- Resume / CV
-- Assignments
-- Notes
-
-Template Types Under Construction:
+### Current use-cases under construction
 - Presentations
 - Exams / Quizzes
 - Plotting
 
-### Future LaTeX work
-
-Jupyter Notebook and RMarkdown -> LaTeX Conversion
+### Future Tasks
+- Jupyter Notebook and RMarkdown -> LaTeX Conversion
