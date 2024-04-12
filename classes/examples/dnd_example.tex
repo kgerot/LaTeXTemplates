@@ -1,0 +1,132 @@
+\documentclass{dnd}
+
+\tcbuselibrary{skins}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{wasysym}
+\usepackage{xstring}
+\setlength{\fboxrule}{0pt}
+\usepackage{tikz}
+\usepackage{setspace}
+
+\setstretch{0.8}
+
+\definecolor{cell}{rgb}{0.96, 0.96, 0.96}
+
+\abilityscores{18}{16}{14}{12}{10}{8}
+
+\newcommand{\skillw}{4.5mm}
+\newcommand{\savesymb}{$\Diamond\,$}
+\newcommand{\skillsymb}{$\Circle\,$}
+\newcommand{\itemskip}{\vspace*{-2mm}}
+
+\begin{document}
+	\newpage
+	\tcbset{sharp corners, colback=white, colframe=black}
+	
+	\begin{tcolorbox}[width=\paperwidth, left skip=0.25in, right skip=0.25in, height=\paperheight/6-2mm-0.5in]
+		name, design, race, class, background, alignment, player
+	\end{tcolorbox}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{tcbraster}[raster column skip=0pt, raster columns = 3, raster force size=false,
+		height = 5\paperheight/6]
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COLUMN 1
+		\begin{tcolorbox}[blankest, width=\paperwidth/3-0.25in/3, left skip=0.25in, right=1mm]
+			\begin{tcbraster}[raster columns=1]%
+				\tcbset{colback=white, colframe=black}%
+				\begin{tcolorbox}[height=13\paperheight/21, colback=cell, left=2mm, right=2mm, top=2mm, bottom=2mm, boxsep=0pt, colframe=white]%
+					\begin{tcbraster}[raster columns=1, raster row skip=2mm, colback=cell]
+						\tcbset{left=0mm, right=0mm, top=2mm, bottom=2mm, boxsep=0mm}%
+						\constructabilities
+					\end{tcbraster}
+				\end{tcolorbox}
+				\begin{tcolorbox}[height=3\paperheight/14-2mm]
+					Languages and Proficiencies
+				\end{tcolorbox}
+			\end{tcbraster}
+		\end{tcolorbox}
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COLUMN 2
+		\begin{tcolorbox}[blankest, width=\paperwidth/3-0.25in/3, left=1mm, right=1mm]
+			\begin{tcbraster}[raster columns=1, raster equal height=rows]%
+				\tcbset{colback=white, colframe=black}%, 
+				\begin{tcbdoublefill}{\paperheight/3-1mm}{gray!50!white}
+					\begin{tcbraster}[raster columns=1, raster before skip=0pt]%
+						\tcbset{colback=white, colframe=black}%
+						\begin{tcolorbox}[blankest, height=\paperheight/12-3mm]
+							\begin{tcbraster}[raster columns=3, raster column skip=2mm]
+								\armorclass\initiative\speed
+							\end{tcbraster}
+						\end{tcolorbox}%
+						\currhitpoints\temphitpoints
+						\begin{tcolorbox}[blankest, height=\paperheight/12-3mm]
+							\begin{tcbraster}[raster columns=2, raster column skip=2mm]
+								\hitdice\deathsaves
+							\end{tcbraster}
+						\end{tcolorbox}%
+					\end{tcbraster}%
+				\end{tcbdoublefill}
+				\begin{tcolorbox}[height=2\paperheight/7-1mm, left=1mm, right=1mm, top=1mm, boxsep=0pt]
+					\begin{tcolorbox}[blankest]
+						\begin{tcbraster}[raster rows=4, raster columns=3, raster force size=false, raster row skip=0.5mm, raster column skip=0.5mm]
+							\tcbset{colback=cell, frame empty, sharp corners=uphill, left=1mm, right=1mm, top=1mm, bottom=1mm}%
+							\begin{tcolorbox}[width=3\linewidth/8-0.25mm, blankest,halign=left, left=1mm, right=1mm]\tcbfontsize{0.9}\textsc{name}\end{tcolorbox}%
+							\begin{tcolorbox}[width=\linewidth/4-0.25mm, blankest,halign=center, left=1mm, right=1mm]\tcbfontsize{0.9}\textsc{atk bonus}\end{tcolorbox}%
+							\begin{tcolorbox}[width=3\linewidth/8-0.25mm, blankest,halign=center, left=1mm, right=1mm]\tcbfontsize{0.9}\textsc{damage \scalebox{0.9}[0.7]{/} type}\end{tcolorbox}%
+							\begin{tcolorbox}[width=3\linewidth/8-0.25mm, height=0.75cm]\end{tcolorbox}
+							\begin{tcolorbox}[width=\linewidth/4-0.25mm, height=0.75cm]\end{tcolorbox}
+							\begin{tcolorbox}[width=3\linewidth/8-0.25mm, height=0.75cm]\end{tcolorbox}
+							\begin{tcolorbox}[width=3\linewidth/8-0.25mm, height=0.75cm]\end{tcolorbox}
+							\begin{tcolorbox}[width=\linewidth/4-0.25mm, height=0.75cm]\end{tcolorbox}
+							\begin{tcolorbox}[width=3\linewidth/8-0.25mm, height=0.75cm]\end{tcolorbox}
+							\begin{tcolorbox}[width=3\linewidth/8-0.25mm, height=0.75cm]\end{tcolorbox}
+							\begin{tcolorbox}[width=\linewidth/4-0.25mm, height=0.75cm]\end{tcolorbox}
+							\begin{tcolorbox}[width=3\linewidth/8-0.25mm, height=0.75cm]\end{tcolorbox}
+						\end{tcbraster}
+					\end{tcolorbox}
+					Attacks and spellcasting
+				\end{tcolorbox}
+				\begin{tcbdoubleline}{3\paperheight/14-2mm}
+						\begin{tcbraster}[raster row skip=1mm]
+							\begin{gold}{CP}\end{gold}
+							\begin{gold}{SP}\end{gold}
+							\begin{gold}{EP}\end{gold}
+							\begin{gold}{GP}\end{gold}
+							\begin{gold}{PP}\end{gold}
+						\end{tcbraster}
+						Equipment
+				\end{tcbdoubleline}
+			\end{tcbraster}
+			
+		\end{tcolorbox}
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COLUMN 3
+		\begin{tcolorbox}[blankest, width=\paperwidth/3-0.25in/3, left=1mm, right=0pt]%
+			\begin{tcbraster}[raster columns=1, raster equal height=rows]%
+				\tcbset{colback=white, colframe=black}%
+				\begin{tcolorbox}[height=\paperheight/3-1mm, top=2mm, left=2mm, right=2mm, boxsep=0pt, colback=lightgray]%
+					\begin{tcbraster}[raster columns=1, raster equal height=rows]%
+						\tcbset{colback=white, colframe=black, left skip=0pt}%
+						\begin{tcolorbox}[height=\paperheight/10-2.125mm]
+							Personality traits
+						\end{tcolorbox}
+						\begin{tcolorbox}[height=7\paperheight/90-3.25mm]
+							Ideals
+						\end{tcolorbox}
+						\begin{tcolorbox}[height=7\paperheight/90-3.25mm]
+							Bonds
+						\end{tcolorbox}
+						\begin{tcolorbox}[height=7\paperheight/90-3.25mm]
+							Flaws
+						\end{tcolorbox}
+					\end{tcbraster}
+				\end{tcolorbox}
+				\begin{tcolorbox}[height=\paperheight/4-1mm+\paperheight/6+\paperheight/12]
+					Features and traits
+				\end{tcolorbox}
+			\end{tcbraster}
+			
+		\end{tcolorbox}
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{tcbraster}
+	
+\end{document}
